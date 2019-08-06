@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  tomcat9-dev:
+    image: bndao/tomcatx:latest
+    container_name: tomcat9_container
+    restart: always
+    ports:
+      - "8888:8080"
+    volumes:
+        - tomcat9-data-sync:/usr/local/tomcat:rw
+    environment:
+      -  JAVA_OPTS=-Dadmin_user=admin -Dadmin_pwd=admin_pwd -Dmaven_user=maven_user -Dmaven_pwd=maven_user_pwd
+    entrypoint: /bin/bash
+    command: start_docker_process.sh
+
+volumes: 
+  tomcat9-data-sync:
